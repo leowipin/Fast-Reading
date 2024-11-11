@@ -3,9 +3,9 @@
     "target": "ES6", // La versión de JavaScript a la que se compila.
     "module": "NodeNext", // El sistema de módulos que usa Node.js.
     "outDir": "./dist", // Directorio de salida para los archivos compilados.
-    "rootDir": "./src", // Directorio de origen del código TypeScript.
+    //"rootDir": "./src", // Directorio de origen del código TypeScript.
     "strict": true, // Activa todas las comprobaciones estrictas de TypeScript.
-    "esModuleInterop": true, // Permite importar módulos de CommonJS como si fueran ES Modules.
+    //"esModuleInterop": true, // Permite importar módulos de CommonJS como si fueran ES Modules.
     "moduleResolution": "NodeNext",// Permite que TypeScript resuelva módulos al estilo de Node.js buscando en node_modules.
     "allowSyntheticDefaultImports": true // Permite importar módulos CommonJS y AMD usando la sintaxis import de ES Modules, incluso si el módulo no tiene un export default
   },

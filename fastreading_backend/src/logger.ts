@@ -1,7 +1,10 @@
 import { createLogger, format, transports } from 'winston';
 import stackTrace from 'stack-trace';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const logger = createLogger({
     level: 'error', // Registra solo mensajes con nivel de severidad 'error' o superior.
@@ -15,7 +18,7 @@ const logger = createLogger({
       })
     ),
     transports: [
-      new transports.File({ filename: 'errors.log' }) // Guarda los registros en un archivo 'errors.log'.
+      new transports.File({ filename: path.join(__dirname, 'errors.log') })
     ]
   });
   
