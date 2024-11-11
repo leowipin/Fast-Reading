@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose'
 
-const mongoURI = 'mongodb://localhost:27017/fast_reading';
+const mongoURI = 'mongodb://localhost:27017/fast_reading';//modify
 
 const connectDB = async () => {
   try {
@@ -12,4 +12,4 @@ const connectDB = async () => {
   }
 };
 
-module.exports = connectDB;
+export default connectDB;

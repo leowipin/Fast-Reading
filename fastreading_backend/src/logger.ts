@@ -1,5 +1,7 @@
-const { createLogger, format, transports } = require('winston');
-const stackTrace = require('stack-trace');
+import { createLogger, format, transports } from 'winston';
+import stackTrace from 'stack-trace';
+
+
 
 const logger = createLogger({
     level: 'error', // Registra solo mensajes con nivel de severidad 'error' o superior.
@@ -18,4 +20,4 @@ const logger = createLogger({
   });
   
 
-module.exports = logger;
+export default logger;

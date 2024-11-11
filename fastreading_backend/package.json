@@ -2,8 +2,11 @@
   "name": "fr-gen",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "start": "node ./bin/www"
+    "build": "tsc",
+    "start": "node ./dist/bin/www",
+    "dev": "tsx src/bin/www.ts"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -14,5 +17,15 @@
     "mongoose": "^8.7.3",
     "morgan": "~1.9.1",
     "winston": "^3.16.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/debug": "^4.1.12",
+    "@types/express": "^5.0.0",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^22.9.0",
+    "@types/stack-trace": "^0.0.33",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
   }
 }

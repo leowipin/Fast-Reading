@@ -2,3 +2,4 @@
 /.env
 /errors.log
 /requests.log
+/dist

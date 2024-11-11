@@ -1,16 +1,24 @@
-const express = require('express');
+import express from 'express';
+import User from '../models/user.js';
+import Role from '../models/role.js';
+import { hashPassword } from '../utils/auth.js';
+
 const router = express.Router();
-const User = require('../models/user');
-const Role = require('../models/role');
-const { hashPassword } = require('../utils/auth')
 
 
-router.post('/signin', async (req, res, next) => {
+router.post('/signup', async (req, res, next):Promise<any> => {
   const { email, username, password } = req.body;
   
   try {
     const hashedPassword = await hashPassword(password)
-    const userRole = await Role.findOne({ name: 'normal_user' });
+    const defaultRole = 'normal_user'
+    const userRole = await Role.findOne({ name: defaultRole });
+
+    if (!userRole) {
+      const error = new Error(`Role ${defaultRole} not found`) as any;
+      error.status = 500;
+      return next(error);
+    }
 
     const newUser = new User({ 
       email, 
@@ -20,9 +28,9 @@ router.post('/signin', async (req, res, next) => {
     });
     
     await newUser.save();
-    res.status(201).json({ message: "Usuario creado con éxito" });
+    return res.status(201).json({ message: "Usuario creado con éxito" });
 
-  } catch (error) {
+  } catch (error: any) {
       
       if (error.code === 11000) {
         const fields = Object.keys(error.keyPattern);
@@ -41,4 +49,8 @@ router.post('/signin', async (req, res, next) => {
   }
 });
 
-module.exports = router;
+router.get("/login", async(req, res, next)=>{
+
+});
+
+export default router;
