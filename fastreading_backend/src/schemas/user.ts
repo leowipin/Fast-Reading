@@ -16,8 +16,8 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    minlength: 5
   },
+  
   roles: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Role' }]
 });
 

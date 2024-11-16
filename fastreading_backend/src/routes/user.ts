@@ -1,49 +1,31 @@
-import express from 'express';
-import User from '../models/user.js';
-import Role from '../models/role.js';
-import { hashPassword } from '../utils/auth.js';
+import express, { Request, Response, NextFunction } from 'express';
+import User from '../schemas/user.js';
+import { transformUserSignUpDTO } from '../DTOs/userSignUpDTO.js';
+import { signupValidator } from '../validations/signupValidator.js';
+import { handleValidationErrors } from '../utils/validationHandler.js';
 
 const router = express.Router();
 
 
-router.post('/signup', async (req, res, next):Promise<any> => {
-  const { email, username, password } = req.body;
+router.post('/signup', signupValidator, handleValidationErrors, async (req: Request, res: Response, next: NextFunction):Promise<any> => {
   
   try {
-    const hashedPassword = await hashPassword(password)
-    const defaultRole = 'normal_user'
-    const userRole = await Role.findOne({ name: defaultRole });
-
-    if (!userRole) {
-      const error = new Error(`Role ${defaultRole} not found`) as any;
-      error.status = 500;
-      return next(error);
-    }
-
-    const newUser = new User({ 
-      email, 
-      username, 
-      password: hashedPassword,
-      roles: [userRole._id]
-    });
-    
+    const signupUser = await transformUserSignUpDTO(req.body)
+    const newUser = new User({ ...signupUser });
     await newUser.save();
-    return res.status(201).json({ message: "Usuario creado con éxito" });
+    return res.status(201).json({ message: "Registro exitoso" });
 
   } catch (error: any) {
       
       if (error.code === 11000) {
         const fields = Object.keys(error.keyPattern);
-        console.log(fields)
         let message;
-    
         if (fields.includes('email')) {
             message = 'Ya existe un usuario con el correo ingresado';
         } else if (fields.includes('username')) {
             message = 'Ya existe un usuario con el nombre de usuario ingresado';
         }
-    
-        return res.status(400).json({ errorMessage: message });
+        return res.status(400).json({ error_message: message });
       }
       next(error)
   }

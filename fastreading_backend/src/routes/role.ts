@@ -1,5 +1,5 @@
 import express from 'express'
-import Role from '../models/role.js';
+import Role from '../schemas/role.js';
 import { PERMISSIONS } from '../utils/permissions.js';
 
 const router = express.Router()
@@ -16,7 +16,7 @@ router.post('/createRole', async(req, res, next):Promise<any>=>{
     } catch (error: any) {
 
         if (error.code === 11000) {
-            return res.status(400).json({ errorMessage: "El nombre del rol ya existeaas" });
+            return res.status(400).json({ error_message: "El nombre del rol ya existe" });
         }
         
         next(error)

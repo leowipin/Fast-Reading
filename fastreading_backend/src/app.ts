@@ -67,11 +67,11 @@ app.use(function(err: any, req: Request, res: Response, next: NextFunction)  {
   res.status(err.status || 500);
   if (err.status === 404) {
     res.json({
-      message: "No existe la ruta especificada"
+      error_message: "No existe la ruta especificada"
     });
   } else {
     res.json({
-      message: "Se produjo un error inesperado, intente nuevamente más tarde"
+      error_message: "Se produjo un error inesperado, intente nuevamente más tarde"
     });
   }
 });
