@@ -13,7 +13,7 @@ export interface UserSignUpOutputDTO {
     username: string;
     email: string;
     password: string;
-    roles: mongoose.Types.ObjectId[];
+    role: mongoose.Types.ObjectId;
 }
 
 export const transformUserSignUpDTO = async (input: UserSignUpInputDTO): Promise<UserSignUpOutputDTO> => {
@@ -21,17 +21,19 @@ export const transformUserSignUpDTO = async (input: UserSignUpInputDTO): Promise
     let {username, email, password} = input;
     password = await hashPassword(password)
     const defaultRole = "normal_user";
-    const roles = await Role.findOne({ name: defaultRole });
+    const role = await Role.findOne({ name: defaultRole });
     
-    if (!roles) {
+    if (!role) {
       const error = new Error(`Role ${defaultRole} not found`) as any;
-      error.status = 500;
-      throw new Error(`Role ${defaultRole} not found`);
+      error.status = 404;
+      error.showMessageToUser = false;
+      throw error;
     }
+
     return {
         username,
         email,
         password,
-        roles: [roles._id]
+        role: role._id
     } 
 }

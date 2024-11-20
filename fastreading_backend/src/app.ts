@@ -49,7 +49,7 @@ import roleRouter from './routes/role.js';
 
 app.use('/', indexRouter);
 app.use('/user', userRouter);
-app.use('/role', roleRouter)
+app.use('/role', roleRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -58,14 +58,18 @@ app.use(function(req, res, next) {
 
 // Error handler returning JSON
 app.use(function(err: any, req: Request, res: Response, next: NextFunction)  {
-  logger.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}\n${err.stack}`);
-
-  if (req.app.get('env') === 'development') {
+  if (req.app.get('env') === 'production' && !err.showMessageToUser) {
+    logger.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}\n${err.stack}`);
+  }
+  if (req.app.get('env') === 'development' && !err.showMessageToUser) {
     console.error(err.stack);
   }
 
   res.status(err.status || 500);
-  if (err.status === 404) {
+  if(err.showMessageToUser){
+    res.json({error_message: err.message})
+  }
+  else if (err.status === 404 && !('showMessageToUser' in err)) {
     res.json({
       error_message: "No existe la ruta especificada"
     });
