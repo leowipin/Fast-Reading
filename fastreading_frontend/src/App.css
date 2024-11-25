@@ -1,0 +1,8 @@
+#root {
+  min-height: 100vh;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  background-color: var(--color-bg);
+  color: var(--color-text)
+}

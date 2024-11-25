@@ -1,0 +1,46 @@
+:root {
+  --font-base: 18px;
+  /* Tema Claro */
+  --color-bg: white;
+  --color-text: black;
+  /* Primary Button */
+  --color-primary-btn-bg: black;
+  --color-primary-btn-text: white;
+  --color-primary-btn-hover: #272727;
+  /* Secondary Button */
+  --color-secondary-btn-bg: white;
+  --color-secondary-btn-text: black;
+  --color-secondary-btn-border: black;
+  --color-secondary-btn-hover: rgb(228, 228, 228);
+}
+
+html {
+  font-size: var(--font-base); /* Ajusta la base de rem */
+}
+
+
+body.dark-mode {
+  /* Tema Oscuro */
+  --color-bg: black;
+  --color-text: white;
+  /* Primary Button */
+  --color-primary-btn-bg: white;
+  --color-primary-btn-text: black;
+  --color-primary-btn-hover:  rgb(228, 228, 228);
+  /* Secondary Button */
+  --color-secondary-btn-bg: rgb(0, 0, 0);
+  --color-secondary-btn-text: white;
+  --color-secondary-btn-border: white;
+  --color-secondary-btn-hover: #272727;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-size: var(--font-base);
+}
