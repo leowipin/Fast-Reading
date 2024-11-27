@@ -1,5 +1,6 @@
-import SignInForm from '../../components/Forms/Signin/SigninForm';
+import { SignInForm } from '../../components/Forms';
 import style from './Home.module.css';
+import { Logo } from '../../components/Logo';
 
 const Home = () => {
     /*const toggleTheme = () => {
@@ -8,11 +9,13 @@ const Home = () => {
     };*/
 
     return(
-        <div className={style.home}>
-            <div className={style.signinContainer}>
-                <SignInForm></SignInForm>
+        <div className={style.homeContainer}>
+            <div className={style.header}>
+                <Logo/>
             </div>
-            
+            <div className={style.signinFormContainer}>
+                <SignInForm/>
+            </div>
         </div>
     )
 };

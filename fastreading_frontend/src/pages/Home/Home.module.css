@@ -1,9 +1,29 @@
-.home {
-    min-height: 100vh;
+.homeContainer{
+    height: 100vh;
+    width: 100%;
+    padding-top: 1px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: 3vh;
 }
 
-  
+.signinFormContainer{
+    display: flex;
+    border-style: solid;
+    border-radius: 4px;
+    justify-content: center;
+    padding: 2rem;
+    height: 63vh;
+    width: 35%;
+    margin-bottom: 5vh;
+}
+
+.header{
+    width: 35%;
+    height: 24vh;
+    margin-top: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

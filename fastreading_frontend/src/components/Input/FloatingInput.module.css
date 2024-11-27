@@ -1,16 +1,17 @@
 /* Estilo del contenedor */
 .floatingInput {
     position: relative;
+    width: 100%;
     /*margin: 20px 0;*/
   }
   
   .floatingInput input {
-    
     padding: 1.5rem 0.8rem 0.5rem 0.8rem;
     font-size: 1rem;
     border: 1px solid #aaa;
     border-radius: 4px;
     outline: none; /*no se muestra el contorno del input cuando se selecciona*/
+    width: 100%;
     transition: box-shadow 0.3s ease
   }
   
