@@ -1,5 +1,5 @@
 import { SignInForm } from '../../components/Forms';
-import style from './Home.module.css';
+import styles from './Home.module.css';
 import { Logo } from '../../components/Logo';
 
 const Home = () => {
@@ -9,11 +9,11 @@ const Home = () => {
     };*/
 
     return(
-        <div className={style.homeContainer}>
-            <div className={style.header}>
+        <div className={styles.homeContainer}>
+            <div className={styles.header}>
                 <Logo/>
             </div>
-            <div className={style.signinFormContainer}>
+            <div className={styles.signinFormContainer}>
                 <SignInForm/>
             </div>
         </div>

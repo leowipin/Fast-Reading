@@ -10,12 +10,19 @@ const SignInForm = ({onSubmit, ...rest}: SigninFormProps) => {
     }
 
     return(
-        <form {...rest} onSubmit={handleSubmit} className={styles.signinForm} >
-            <h1>Iniciar Sesión</h1>
-            <FloatingInput type="email" labelContent="Correo Electrónico"></FloatingInput>
-            <FloatingInput type="password" labelContent="Contraseña"></FloatingInput>
-            <PrimaryButton label="Iniciar sesión" type="submit"></PrimaryButton>
-        </form>
+        
+            <form {...rest} onSubmit={handleSubmit} className={styles.signinForm}>
+                
+                <h2>Iniciar Sesión</h2>
+            
+                <FloatingInput type="email" labelContent="Correo Electrónico"></FloatingInput>
+                <FloatingInput type="password" labelContent="Contraseña"></FloatingInput>
+                <PrimaryButton label="Iniciar sesión" type="submit"></PrimaryButton>
+                <a>¿No estas registrado? ¡Registrate!</a>
+                           
+            </form>
+        
+        
     )
 }
 

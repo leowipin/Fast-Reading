@@ -1,5 +1,5 @@
 :root {
-  --font-base: 18px;
+  --font-base: calc(15px + 0.390625vw);
   /* Tema Claro */
   --color-bg: white;
   --color-text: black;
@@ -49,6 +49,6 @@ body {
   box-sizing: border-box;
 }
 
-h1{
+h1, h2{
   margin: 0;
 }
