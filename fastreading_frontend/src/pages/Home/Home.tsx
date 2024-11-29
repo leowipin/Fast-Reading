@@ -1,12 +1,15 @@
-import { SignInForm } from '../../components/Forms';
+import { SigninForm } from '../../components/Forms';
 import styles from './Home.module.css';
 import { Logo } from '../../components/Logo';
+import { useState } from 'react';
+import { SignupForm } from '../../components/Forms';
 
 const Home = () => {
-    /*const toggleTheme = () => {
-        const body = document.body;
-        body.classList.toggle('dark-mode');
-    };*/
+    const [isSignin, setIsSignin] = useState(true);
+    
+    const toggleForm = () =>{
+        setIsSignin(!isSignin)
+    }
 
     return(
         <div className={styles.homeContainer}>
@@ -14,7 +17,11 @@ const Home = () => {
                 <Logo/>
             </div>
             <div className={styles.signinFormContainer}>
-                <SignInForm/>
+                { isSignin ? 
+                    (<SigninForm onToggleForm={toggleForm}/>):
+                    (<SignupForm onToggleForm={toggleForm}/>)
+                }
+                
             </div>
         </div>
     )

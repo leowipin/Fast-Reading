@@ -11,6 +11,7 @@ const FloatingInput = ({ type, id, value, onChange, labelContent, ...rest }: Inp
         id={id}
         type={type}
         placeholder=''
+        onChange={onChange}
       />
       <label htmlFor={id}>{labelContent}</label>
     </div>

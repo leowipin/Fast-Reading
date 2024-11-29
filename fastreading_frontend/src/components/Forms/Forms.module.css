@@ -1,0 +1,20 @@
+.signForm{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-around;
+    gap: 2vh;
+    cursor: pointer;
+}
+
+.textInput{
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    align-items: flex-start;
+}
+
+.signForm p{
+    color: red;
+    font-size: 0.8rem;
+}

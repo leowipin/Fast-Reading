@@ -1,8 +1,7 @@
-.signinForm{
+.validationMessage{
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    justify-content: space-around;
-    gap: 2vh;
+    background-color: rgb(248, 176, 176);
+    color: rgb(235, 32, 32);
+    padding: 1rem 1rem;
+    border-radius: 4px;
 }
-
