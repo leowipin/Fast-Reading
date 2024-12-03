@@ -3,16 +3,31 @@ import FloatingInput from "../../Input/FloatingInput";
 import { PrimaryButton } from "../../Button";
 import SignupFormProps from "./SignupFormProps";
 import { useState } from "react";
+import { UserSignUpInputDTO } from "../../../types/User";
+import { userService } from "../../../services/userService";
 
 const SignUpForm = ({ onSubmit, onToggleForm, ...rest }: SignupFormProps) => {
     
+    //api call
+    const { signUp } = userService();
+    //values
+    const[email, setEmail] = useState<string>("");
+    const[username, setUsername] = useState<string>("");
+    const[password, setPassword] = useState<string>("");
+    //validations
     const[isValidEmail, setIsValidEmail] = useState(true);
     const[isEmptyEmail, setIsEmptyEmail] = useState(false);
     const[passwordError, setPasswordError] = useState<string|null>(null);
     const[usernameError, setUsernameError] = useState<string|null>(null);
 
-    const handleSubmit = () => {
-        console.log("handlesubmit signup");
+    const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const user:UserSignUpInputDTO = {
+            email:email,
+            username: username,
+            password: password
+        }
+        await signUp(user);
     };
 
     const emailValidationRegex = (e: React.ChangeEvent<HTMLInputElement>) =>{
@@ -21,6 +36,7 @@ const SignUpForm = ({ onSubmit, onToggleForm, ...rest }: SignupFormProps) => {
             const emailRegex = /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/;  
             setIsEmptyEmail(false)
             setIsValidEmail(emailRegex.test(email))
+            setEmail(email);
             return;
         }
         setIsEmptyEmail(true);
@@ -35,6 +51,7 @@ const SignUpForm = ({ onSubmit, onToggleForm, ...rest }: SignupFormProps) => {
             setPasswordError("La contraseña no puede tener más de 32 caracteres.");
         } else {
             setPasswordError(null);
+            setPassword(password);
         }
     };
    
@@ -46,6 +63,7 @@ const SignUpForm = ({ onSubmit, onToggleForm, ...rest }: SignupFormProps) => {
             setUsernameError("La nombre de usuario no puede tener más de 20 caracteres.");
         } else {
             setUsernameError(null);
+            setUsername(username);
         }
     };
 

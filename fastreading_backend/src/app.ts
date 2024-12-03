@@ -6,6 +6,7 @@ import fs from 'fs';
 import path from 'path';
 import logger from './logger.js';
 import { fileURLToPath } from 'url';
+import cors from 'cors';
 
 var app = express();
 
@@ -40,6 +41,19 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.use(express.json());
+
+//cors
+const corsOptions = {
+  origin: process.env.NODE_ENV === 'production'
+    ? 'https://mi-dominio-en-produccion.com'
+    : ['http://127.0.0.1:5173', 'http://localhost:5173'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: false,
+};
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // Respuesta para solicitudes preflight
+
 
 // routes
 import indexRouter from './routes/index.js';

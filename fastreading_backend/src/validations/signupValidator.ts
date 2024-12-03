@@ -16,7 +16,7 @@ export const signupValidator = [
   body('password')
     .exists({ checkFalsy: true })
     .withMessage('La contraseña es obligatoria.')
-    .isLength({ min: 4, max: 16 })
-    .withMessage('La contraseña debe tener entre 4 y 16 caracteres.')
+    .isLength({ min: 4, max: 32 })
+    .withMessage('La contraseña debe tener entre 4 y 32 caracteres.')
 ];
 
