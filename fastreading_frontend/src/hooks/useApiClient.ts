@@ -17,17 +17,14 @@ export const useApiClient = () =>{
     apiClient.interceptors.request.use((config)=>{
         const authHeader = getAuthHeader();
         config.headers.Authorization = authHeader;
-        console.log("HEADERS: ", config.headers)
         return config;
     });
 
-    apiClient.interceptors.response.use((response)=>{
-        console.log("Response in useapi: ",response)
+    /*apiClient.interceptors.response.use((response)=>{
         return response;
     }, (error)=>{
-        console.log(error.response.data)
-        return error
-    })
+        throw error;
+    })*/
 
     return apiClient;
 }

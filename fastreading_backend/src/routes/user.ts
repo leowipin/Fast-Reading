@@ -27,7 +27,7 @@ router.post('/signup', signupValidator, handleValidationErrors, async (req: Requ
         if (fields.includes('email')) {
             message = 'Ya existe un usuario con el correo ingresado';
         } else if (fields.includes('username')) {
-            message = 'Ya existe un usuario con el nombre de usuario ingresado';
+            message = 'Ya existe un usuario con el nombre ingresado';
         }
         return res.status(400).json({ error_message: message });
       }
@@ -36,7 +36,7 @@ router.post('/signup', signupValidator, handleValidationErrors, async (req: Requ
   
 });
 
-router.get("/login", loginValidator, handleValidationErrors, async (req: Request, res: Response, next: NextFunction): Promise<any>=>{
+router.post("/login", loginValidator, handleValidationErrors, async (req: Request, res: Response, next: NextFunction): Promise<any>=>{
   
   try {
 

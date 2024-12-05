@@ -1,30 +1,33 @@
-import { SigninForm } from '../../components/Forms';
-import styles from './Home.module.css';
-import { Logo } from '../../components/Logo';
-import { useState } from 'react';
-import { SignupForm } from '../../components/Forms';
+import { useEffect, useState } from 'react'
+import styles from './Home.module.css'
+import { userService } from '../../services/userService';
 
-const Home = () => {
-    const [isSignin, setIsSignin] = useState(true);
-    
-    const toggleForm = () =>{
-        setIsSignin(!isSignin)
+const Home = ()=>{
+    const[test, setTest] = useState<any>();
+    const {getTest} = userService();
+
+    useEffect(()=>{
+        getT();
+    }, [])
+
+    async function getT(){
+        try{
+            const response:any = await getTest();
+            console.log(response.data.saludo)
+            setTest(response.data.saludo);
+        } catch (error:any){
+            console.log(error.response.data.error_message)
+        }
+        
     }
+    
 
     return(
         <div className={styles.homeContainer}>
-            <div className={styles.header}>
-                <Logo/>
-            </div>
-            <div className={styles.signinFormContainer}>
-                { isSignin ? 
-                    (<SigninForm onToggleForm={toggleForm}/>):
-                    (<SignupForm onToggleForm={toggleForm}/>)
-                }
-                
-            </div>
+            <h1>Home</h1>
+            <p>{test}</p>
         </div>
     )
-};
+}
 
-export default Home;
+export default Home

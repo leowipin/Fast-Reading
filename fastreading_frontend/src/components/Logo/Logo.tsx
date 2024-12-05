@@ -1,5 +1,5 @@
 import styles from './Logo.module.css'
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Logo = () => {
 
@@ -20,16 +20,6 @@ const Logo = () => {
         }
         setIsDarkMode(!isDarkMode);
     };
-
-    // Aplicar el tema guardado al cargar la página
-    useEffect(() => {
-        const theme = localStorage.getItem("theme");
-        if (theme === "dark") {
-            document.body.classList.add("dark-mode");
-        } else {
-            document.body.classList.remove("dark-mode");
-        }
-    }, []);
 
     return(
         <div className={styles.logoContainer}>

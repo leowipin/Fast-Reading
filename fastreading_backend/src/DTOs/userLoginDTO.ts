@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import { RoleDocument } from "../schemas/role.js";
 
 interface UserLoginInputDTO {
-    username: string;
+    email: string;
     password: string;
 }
 
@@ -13,11 +13,11 @@ interface UserTokenDTO {
 }
 
 export const transformUserLoginDTO = async (input:UserLoginInputDTO): Promise<UserTokenDTO> => {
-    const {username, password} = input;
-    const user = await User.findOne({ username }).populate<{ role: RoleDocument }>("role");
+    const {email, password} = input;
+    const user = await User.findOne({ email }).populate<{ role: RoleDocument }>("role");
 
     if (!user || !(await bcrypt.compare(password, user.password))) {
-        const error = new Error("Nombre de usuario o contraseña incorrecta") as any;
+        const error = new Error("Correo o contraseña incorrecto") as any;
         error.status = 401;
         error.showMessageToUser = true;
         throw error;
