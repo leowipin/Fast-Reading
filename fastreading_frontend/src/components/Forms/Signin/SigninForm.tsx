@@ -37,9 +37,9 @@ const SignInForm = ({onSubmit, onToggleForm, ...rest}: SigninFormProps) => {
             const token = res.data.token;
             login(token);
             storeCredentialsInBrowser(email, password);
-            navigate("/home");
+            navigate("/app");
         } catch (error:any){
-            setValidationError(error.response.data.error_message);          
+            setValidationError(error.response.data.error_message || 'Ocurrio un error inesperado');
         }
         
     }

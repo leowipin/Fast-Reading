@@ -33,7 +33,7 @@ const SignUpForm = ({ onSubmit, onToggleForm, ...rest }: SignupFormProps) => {
             const data = await signUp(user);
             console.log(data);
         }catch(error:any){
-            setError(error.response.data.error_message);
+            setError(error.response.data.error_message || 'Ocurrio un error inesperado');
         }
         
     };

@@ -8,6 +8,7 @@ export interface Token{
 export interface AuthContextProps {
     isAuthenticated: boolean;
     role: string | null;
+    permissions: string[] | null;
     login: (token: string) => void;
     logout: () => void;
     isLoading: boolean;
